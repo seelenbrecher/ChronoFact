@@ -20,9 +20,9 @@
     <header class="page-header" role="banner">
       <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
-      {% if site.github.is_project_page %}
+      <!-- {% if site.github.is_project_page %}
         <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
-      {% endif %}
+      {% endif %} -->
       {% if site.show_downloads %}
         <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
         <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
@@ -154,6 +154,36 @@
           </p>
         </ul>
         <img src="images/chronological-order-classifier.png">
+
+        <h3>Step 5: Claim Classifier</h3>
+        <ul>
+          <li>To predict the overall claim label:</li>
+        </ul>
+        <div style="text-align: center;">
+          <img src="images/claim-classifier.png" style="max-width: 85%; height: auto;">
+        </div>
+
+        <h3>Model Training</h3>
+        <ul>
+          <li>We train the model with 2 losses: &#8466;<sub>cross</sub> and &#8466;<sub>soft</sub></li>
+          <li>&#8466;<sub>cross</sub> is a cross-entropy function for a claim event c<sub>i</sub>, chronological order, and overall claim label</li>
+          <div style="text-align: center;">
+            <img src="images/l-cross.png" style="max-width: 60%; height: auto;">
+          </div>
+          
+          <li>&#8466;<sub>soft</sub> ensures the consistency of the overall claim label with the claim events and their chronological order. Particularly, we apply the following logic rules:</li>
+          <div style="text-align: center;">
+            <img src="images/hard-rules.png" style="max-width: 45%; height: auto;">
+          </div>
+          <li>We leverage Godel t-norm to soften the hard reasoning rules in the claim classifier, and obtain the differentiable distribution</li>
+          <div style="text-align: center;">
+            <img src="images/l-soft.png" style="max-width: 95%; height: auto;">
+          </div>
+          <li>Final loss function:</li>
+          <div style="text-align: center;">
+            <img src="images/final-l.png" style="max-width: 40%; height: auto;">
+          </div>
+        </ul>
       </section>
 
       <section class="main-content">

@@ -46,7 +46,7 @@
     <header class="page-header" role="banner">
       <h1 class="project-name">Another page</h1>
       <h2 class="project-tagline">This is just another page</h2>
-      
+      <!--  -->
       
 
       <div class="publication-authors">
@@ -95,7 +95,7 @@
 
           <!-- Poster Link. -->
           <span class="link-block">
-          <a href="https://github.com/seelenbrecher/ChronoFact/blob/main/poster/poster.pdf" class="btn">
+          <a href="https://github.com/seelenbrecher/ChronoFact/blob/main/poster/ChronoFact Poster.png" class="btn">
             <span class="icon">
                 <i class="fas fa-chalkboard"></i>
             </span>
@@ -175,6 +175,36 @@
           </p>
         </ul>
         <img src="images/chronological-order-classifier.png">
+
+        <h3>Step 5: Claim Classifier</h3>
+        <ul>
+          <li>To predict the overall claim label:</li>
+        </ul>
+        <div style="text-align: center;">
+          <img src="images/claim-classifier.png" style="max-width: 85%; height: auto;">
+        </div>
+
+        <h3>Model Training</h3>
+        <ul>
+          <li>We train the model with 2 losses: &#8466;<sub>cross</sub> and &#8466;<sub>soft</sub></li>
+          <li>&#8466;<sub>cross</sub> is a cross-entropy function for a claim event c<sub>i</sub>, chronological order, and overall claim label</li>
+          <div style="text-align: center;">
+            <img src="images/l-cross.png" style="max-width: 60%; height: auto;">
+          </div>
+          
+          <li>&#8466;<sub>soft</sub> ensures the consistency of the overall claim label with the claim events and their chronological order. Particularly, we apply the following logic rules:</li>
+          <div style="text-align: center;">
+            <img src="images/hard-rules.png" style="max-width: 45%; height: auto;">
+          </div>
+          <li>We leverage Godel t-norm to soften the hard reasoning rules in the claim classifier, and obtain the differentiable distribution</li>
+          <div style="text-align: center;">
+            <img src="images/l-soft.png" style="max-width: 95%; height: auto;">
+          </div>
+          <li>Final loss function:</li>
+          <div style="text-align: center;">
+            <img src="images/final-l.png" style="max-width: 40%; height: auto;">
+          </div>
+        </ul>
       </section>
 
       <section class="main-content">
